@@ -25,10 +25,10 @@ stages:
     - task: AzureResourceManagerTemplateDeployment@3
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: '<SERVICE-CONNECTION>' # REPLACE with your service connection
-        subscriptionId: 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' # REPLACE with your Subscription ID
+        azureResourceManagerConnection: 'test_sc' # REPLACE with your service connection
+        subscriptionId: '6d82e056-c69d-4d8d-8e50-cba26a3e53e9' # REPLACE with your Subscription ID
         action: 'Create Or Update Resource Group'
-        resourceGroupName: 'demo-rg'
+        resourceGroupName: 'Demo_RG'
         location: 'East US'
         templateLocation: 'Linked artifact'
         csmFile: '$(System.ArtifactsDirectory)/**/FullEnvironmentSetupMerged.json'
@@ -44,7 +44,7 @@ stages:
     - task: AzureRmWebAppDeployment@4
       inputs:
         ConnectionType: 'AzureRM'
-        azureSubscription: '<SERVICE-CONNECTION>' # REPLACE with your service connection
+        azureSubscription: 'test_sc' # REPLACE with your service connection
         appType: 'webApp'
         WebAppName: $(WebsiteName)
         packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
